@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:5000/api/progress';
+const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api/progress';
 
 export const LEVELS = [
     { level: 1, title: "UNPLUGGED", xpNeeded: 0 },

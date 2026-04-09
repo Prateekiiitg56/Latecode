@@ -15,7 +15,7 @@ export default function Search({ setActivePanel, setActiveProblemId }) {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        fetch('http://localhost:5000/api/problems')
+        fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/problems`)
             .then(res => res.json())
             .then(data => {
                 if (Array.isArray(data) && data.length > 0) {

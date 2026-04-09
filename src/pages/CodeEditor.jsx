@@ -55,7 +55,7 @@ export default function CodeEditor({ activeLanguage, activeProblemId, setActiveP
         setLoading(true);
         const targetId = activeProblemId || 1;
 
-        fetch('http://localhost:5000/api/problems')
+        fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/problems`)
             .then(res => res.json())
             .then(data => {
                 if (Array.isArray(data)) {
@@ -66,7 +66,7 @@ export default function CodeEditor({ activeLanguage, activeProblemId, setActiveP
             })
             .catch(() => { });
 
-        fetch(`http://localhost:5000/api/problems/${targetId}`)
+        fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/problems/${targetId}`)
             .then(res => {
                 if (!res.ok) throw new Error('API not available');
                 return res.json();
@@ -131,7 +131,7 @@ export default function CodeEditor({ activeLanguage, activeProblemId, setActiveP
         const executionLang = PISTON_LANG_MAP[activeLanguage] || PISTON_LANG_MAP['python'];
 
         try {
-            const res = await fetch('http://localhost:5000/api/execute', {
+            const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/execute`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
