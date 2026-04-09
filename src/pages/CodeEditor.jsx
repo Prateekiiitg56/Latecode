@@ -52,8 +52,10 @@ export default function CodeEditor({ activeLanguage, activeProblemId, setActiveP
 
     // Fetch DB Context
     useEffect(() => {
+        const targetId = activeProblemId;
+        if (!targetId) return; // Don't fetch until a real problem ID is set
+
         setLoading(true);
-        const targetId = activeProblemId || 1;
 
         fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000/api'}/problems`)
             .then(res => res.json())
